@@ -22,3 +22,12 @@ But these replacements are development-only, all of these attributes get transla
     - https://www.robinwieruch.de/react-list-key/
 - Use the index as an item key for the last resort, as it may comes with lots of unexpected behaviors.
 - returning null in React to render nothing at that moment or position
+
+### React element and instantiation
+
+- `Decalaring a React component` is just the declaration of the function or the class
+- After the declaration, we could use this component in our JSX, and that make the component instantiated, and React will render it as a `React element`
+- And that React element is also called `the instance of the React component`.
+- Although we just use a component in the JSX using a angle brackets (e.g. <Greeting />), but React is using React.createElement API to create React element for us under the hood.
+- Always use angle brackets to render a React component, and NEVER call it with parenthesis if you're declaring a function component.
+    - https://www.robinwieruch.de/react-element-component/

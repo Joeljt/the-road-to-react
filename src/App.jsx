@@ -18,7 +18,6 @@ const list = [
   },
 ];
 
-
 function App() {
 
   // Everything in the function will be called during every render
@@ -26,23 +25,37 @@ function App() {
 
   return (
     <div>
-      <h1>My Hacker Stories</h1>
-      <label htmlFor="search">Search:</label>
-      <input id="search" type="text" />
+      <Search />
       <hr />
-      {list.map(item => {
+      <List />
+    </div>
+  );
+}
+
+const Search = () => (
+  <>
+    <h1>My Hacker Stories</h1>
+    <label htmlFor="search">Search: </label>
+    <input id="search" type="text" />
+  </>
+);
+
+const List = () => {
+  return (
+    <ul>
+      {list.map(function (item) {
         return (
           <li key={item.objectID}>
             <span>
-              <a href={item.url}>{item.title}</a>
-              <span>{item.author}</span>
-              <span>{item.num_comments}</span>
-              <span>{item.points}</span>
+              <a href={item.title}>{item.title}</a>
             </span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
           </li>
-        )
+        );
       })}
-    </div>
+    </ul>
   );
 }
 
