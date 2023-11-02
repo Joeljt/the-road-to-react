@@ -18,45 +18,42 @@ const list = [
   },
 ];
 
-function App() {
-
-  // Everything in the function will be called during every render
-  // so define variables outside of the component to avoid re-deines
-
-  return (
-    <div>
-      <Search />
-      <hr />
-      <List />
-    </div>
-  );
-}
-
-const Search = () => (
-  <>
-    <h1>My Hacker Stories</h1>
-    <label htmlFor="search">Search: </label>
-    <input id="search" type="text" />
-  </>
+const App = () => (
+  <div>
+    <Search />
+    <hr />
+    <List />
+  </div>
 );
 
-const List = () => {
+const Search = () => {
+  const handleChange = (event) => {
+    // synthetic event
+    console.log(event)
+    console.log(event.target.value)
+  }
   return (
-    <ul>
-      {list.map(function (item) {
-        return (
-          <li key={item.objectID}>
-            <span>
-              <a href={item.title}>{item.title}</a>
-            </span>
-            <span>{item.author}</span>
-            <span>{item.num_comments}</span>
-            <span>{item.points}</span>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <h1>My Hacker Stories</h1>
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" onChange={handleChange}/>
+    </>
   );
 }
+
+const List = () => (
+  <ul>
+    {list.map((item) => (
+      <li key={item.objectID}>
+        <span>
+          <a href={item.title}>{item.title}</a>
+        </span>
+        <span>{item.author}</span>
+        <span>{item.num_comments}</span>
+        <span>{item.points}</span>
+      </li>
+    ))}
+  </ul>
+);
 
 export default App

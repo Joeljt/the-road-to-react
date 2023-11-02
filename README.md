@@ -31,3 +31,16 @@ But these replacements are development-only, all of these attributes get transla
 - Although we just use a component in the JSX using a angle brackets (e.g. <Greeting />), but React is using React.createElement API to create React element for us under the hood.
 - Always use angle brackets to render a React component, and NEVER call it with parenthesis if you're declaring a function component.
     - https://www.robinwieruch.de/react-element-component/
+
+### StrictMode Component
+- use StrictMode to help you find bugs more easily and early
+- component wrapped by strict mode will run another render to find redundant re-renders, and try to make your component pure enough to ignore the extra rendering triggered by strict mode component
+- hooks inside a strict mode component hierachy will run an extra setup-cleanup procedure to help you find missing cleanup
+- using of legacy API would get warnings inside a strict mode component
+
+### Handler function
+- Declare a function to handle the DOM event is very common in React, and those functions are called handler functions
+- the event will be passed to the handler function, and that event is synthetic, not the original DOM event
+- React has handled all the preventDefault works for developers under the hood
+- use `event.nativeEvent` to get the original DOM event if that's your case
+
