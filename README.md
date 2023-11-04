@@ -13,7 +13,6 @@ But these replacements are development-only, all of these attributes get transla
 - More readings
     - https://stackoverflow.com/questions/44931479/compiling-vs-transpiling
     - https://react.dev/learn/writing-markup-with-jsx
-    - 
 
 ### List in React
 
