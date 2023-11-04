@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
+import React from "react";
+
 const App = () => {
 
-  const list = [
+  const stories = [
     {
       title: 'React',
       url: 'https://reactjs.org/',
@@ -20,26 +22,40 @@ const App = () => {
     },
   ];
 
+  let [searchTerm, setSearchTerm] = React.useState('')
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  }
+
+  // filter the story list in the parent component, and pass the filterd result directly
+  // don't bother passing the `searchTerm` down to the List component
+  // It's not neccessary to do that
+  const searchedStories = stories.filter(story => story.title.includes(searchTerm));
+
   return ( 
     <div>
-      <Search />
+      <Search searchTerm={searchTerm} onSearch={handleSearch} />
       <hr />
-      <List list={list}/>
+      <List list={searchedStories} />
     </div>
   );
 }
 
-const Search = () => {
-  const handleChange = (event) => {
-    // synthetic event
-    console.log(event)
-    console.log(event.target.value)
-  }
+const Search = (props) => {
   return (
     <>
       <h1>My Hacker Stories</h1>
       <label htmlFor="search">Search: </label>
-      <input id="search" type="text" onChange={handleChange}/>
+      <input 
+        id="search" 
+        type="text" 
+        value={props.searchTerm} 
+        onChange={props.onSearch}
+      />
+      <p>
+        Searching for { props.searchTerm }
+      </p>
     </>
   );
 }

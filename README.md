@@ -43,3 +43,26 @@ But these replacements are development-only, all of these attributes get transla
 - React has handled all the preventDefault works for developers under the hood
 - use `event.nativeEvent` to get the original DOM event if that's your case
 
+### Props and callback handlers
+- Use props to comunicate with child component from a parent component, props are only passed downwards
+- Use callback handler to do the comunication the other way around
+- Make use of `useState` to handle a stateful status or variant in a React component
+    - note that the mechanism of `useState` hook to better understand it when the state is mutated asynchornously
+    - https://www.robinwieruch.de/react-usestate-hook/
+    - https://www.robinwieruch.de/react-usereducer-vs-usestate/
+    - https://www.robinwieruch.de/react-usereducer-hook/
+- Problem here
+    - Lifted the state in Search component to the App component, and set the value and handle callback with props, but the input is totally uncontrollable, why?
+    - it turns out that I make a typo mistake, resulting the input have no onChange callback
+
+### Lifting State
+- If a state introduced inside a child component would be useful for its parent component, then we should lift that state to the parent component, and pass it down to the child component
+- A state should always be there where all components which depend on it can read(via props) and update(via callback handler) it.
+- be careful about the props passed downwards, child shouldn't be concerned about computing if the data can be handled by the parent.
+
+### Controlled Components
+- If either the input or the output of a component is not controlled by React, we call the component itself is an uncontrolled component, and the element inside the component is an uncontrolled element.
+- Only if both the input and the output are controlled by React, not some internal state of vanilla HTML, can we call that component a controlled component.
+- Controlled Components are just like pure functions, which is more prefered during our development, to get rid of side effects and obtain a predictable behavior.
+
+
