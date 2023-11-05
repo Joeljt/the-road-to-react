@@ -31,7 +31,9 @@ const App = () => {
   // filter the story list in the parent component, and pass the filterd result directly
   // don't bother passing the `searchTerm` down to the List component
   // It's not neccessary to do that
-  const searchedStories = stories.filter(story => story.title.includes(searchTerm));
+  const searchedStories = stories.filter(story => { 
+    return story.title.toLowerCase().includes(searchTerm.toLowerCase());
+  })
 
   return ( 
     <div>
@@ -62,19 +64,25 @@ const Search = (props) => {
 
 const List = ({ list }) => (
   <ul>
-    {list.map((item) => <Item key={item.objectID} item={item}/>)}
+    {list.map(({ objectID, ...rest }) => <Item key={objectID} {...rest}/>)}
   </ul>
 );
 
-const Item = ({ item }) => {
+const Item = ({
+  title, 
+  url,
+  author,
+  num_comments,
+  points
+}) => {
   return (
-    <li key={item.objectID}>
+    <li>
     <span>
-      <a href={item.title}>{item.title}</a>
+      <a href={url}>{title}</a>
     </span>
-    <span>{item.author}</span>
-    <span>{item.num_comments}</span>
-    <span>{item.points}</span>
+    <span>{author}</span>
+    <span>{num_comments}</span>
+    <span>{points}</span>
   </li>
   );
 }

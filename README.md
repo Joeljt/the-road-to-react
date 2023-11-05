@@ -65,4 +65,11 @@ But these replacements are development-only, all of these attributes get transla
 - Only if both the input and the output are controlled by React, not some internal state of vanilla HTML, can we call that component a controlled component.
 - Controlled Components are just like pure functions, which is more prefered during our development, to get rid of side effects and obtain a predictable behavior.
 
+### Destructing
+- We could make use of destructing to concisely get values from an object
+- notice how the nested data is also obtained by destructing: { originalKey: customizedKey, originalKey: { nestedData } }
 
+### ... for both spread and rest
+- use ... to flat all the pairs within an javascript object
+- also use ... to take care of all or some remaining pairs from a props
+- pay attention to how the remaining props get passed down to another component: there is no key specified, just pass it: <Example key={id} {...rest} />
