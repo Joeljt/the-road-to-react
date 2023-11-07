@@ -73,3 +73,17 @@ But these replacements are development-only, all of these attributes get transla
 - use ... to flat all the pairs within an javascript object
 - also use ... to take care of all or some remaining pairs from a props
 - pay attention to how the remaining props get passed down to another component: there is no key specified, just pass it: <Example key={id} {...rest} />
+
+### useEffect hook
+- make use of useEffect hook to take care of side effects during development
+- useEffect hook takes two parameters:
+    - the first one is the side effect that need to be called
+        - the return function of the side effect is a clean-up function
+        - the clean-up function would be called every time before the next side effect call, and the unmounting stage of the component
+    - the second one is the dependency:
+        - undefined to make the side effect to be called during every render
+        - empty array to only called during the first render
+        - dependency list to only call whenever one of the dependencies is changed
+        - we can also implement an only-once effect or a only-watch-update effect with the help of a boolean flag using useRef hook
+- https://www.robinwieruch.de/react-useeffect-hook/
+
