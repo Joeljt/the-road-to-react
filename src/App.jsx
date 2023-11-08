@@ -22,14 +22,7 @@ const App = () => {
     },
   ];
 
-  let [searchTerm, setSearchTerm] = React.useState(
-    localStorage.getItem('search') || 'React'
-  );
-
-  React.useEffect(() => {
-    console.log('use effect inside');
-    localStorage.setItem('search', searchTerm);
-  });
+  let [searchTerm, setSearchTerm] = useStorageState('search', 'React');
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -42,13 +35,48 @@ const App = () => {
     return story.title.toLowerCase().includes(searchTerm.toLowerCase());
   })
 
+  const [isToggle, { handleToggle }] = useBoolean(false)
+
   return ( 
     <div>
       <Search searchTerm={searchTerm} onSearch={handleSearch} />
       <hr />
       <List list={searchedStories} />
+      <hr />
+      <div>
+        <button type="button" onClick={handleToggle}>
+          {isToggle + ""}
+        </button>
+      </div>
     </div>
   );
+}
+
+const useStorageState = (key, initialState) => {
+  const [value, setValue] = React.useState(
+    localStorage.getItem(key) || initialState
+  );
+  
+  React.useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [value]);
+
+  return [value, setValue];
+}
+
+const useBoolean = (initialState) => {
+  const [state, setState] = React.useState(initialState);
+  const handleTrue = () => setState(true);
+  const handleFalse = () => setState(false);
+  const handleToggle = () => setState(!state);
+  return [
+    state,
+    {
+      handleTrue,
+      handleFalse,
+      handleToggle
+    }
+  ];
 }
 
 const Search = (props) => {

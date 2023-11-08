@@ -87,3 +87,11 @@ But these replacements are development-only, all of these attributes get transla
         - we can also implement an only-once effect or a only-watch-update effect with the help of a boolean flag using useRef hook
 - https://www.robinwieruch.de/react-useeffect-hook/
 
+### Custom Hook
+- make use of React's build-in hooks to make your own hook
+- A custom hook must meet the following requirements:
+    - the function name starts with the prefix `use`, and follow the camelCase convention
+    - it must consist of other React hooks or custom hooks
+- https://www.robinwieruch.de/react-custom-hook/
+
+
